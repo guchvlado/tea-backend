@@ -12,8 +12,8 @@ export class OrdersController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    createOrder(@Body() dto: CreateOrderDto) {
-       return this.ordersService.createOrder(dto) 
+    createOrder(@Request() req, @Body() dto: CreateOrderDto) {
+       return this.ordersService.createOrder(req.user.id, dto) 
     }
 
     @Roles("ADMIN")

@@ -13,8 +13,15 @@ export class Order extends Model<Order> {
     @Column({type: DataType.STRING, defaultValue: 'toDo'})
     status: string;
 
-    @BelongsToMany(() => User, () => UserOrder)
-    users: User[];
+    // @BelongsToMany(() => User, () => UserOrder)
+    // users: User[];
+
+    @ForeignKey(() => User)
+    @Column({type: DataType.INTEGER})
+    userId: number;
+
+    @BelongsTo(() => User)
+    user: User
 
     @BelongsToMany(() => Tea, () => TeaOrder)
     tea: Tea[]

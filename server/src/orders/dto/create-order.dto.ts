@@ -5,5 +5,4 @@ interface dataItem {
 
 export class CreateOrderDto {
     readonly items: dataItem[];
-    readonly userId: number;
 }

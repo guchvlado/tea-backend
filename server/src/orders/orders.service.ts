@@ -17,16 +17,19 @@ export class OrdersService {
                 private usersService: UsersService,
                 private teaItemsService: TeaItemsService) {}
 
-    async createOrder(dto: CreateOrderDto) {
+    async createOrder(userId, dto: CreateOrderDto) {
         const order = await this.orderRepository.create()
-        const user = await this.usersService.getUserByPk(dto.userId)
+        const user = await this.usersService.getUserByPk(userId)
 
         if (!user || !order) {
             throw new HttpException('Заказ не удалось создать', HttpStatus.BAD_REQUEST)
         }
 
-        await order.$set('users', [user.id])
-        order.users = [user]
+        // await order.$set('users', [user.id])
+        // order.users = [user]
+
+        await order.$set('user', user.id)
+        order.user = user
 
         await order.$set('tea', [])
         order.tea = []
@@ -56,7 +59,7 @@ export class OrdersService {
 
     async getOrdersByCurrentUser(userId: string) {
         //const orders = await this.userOrderRepository.findAll({include: {all: true}, where: {userId}})
-        const orders = await this.orderRepository.findAll({include: {all: true},})
+        const orders = await this.orderRepository.findAll({include: {all: true}, where: {userId}})
         return orders
     }
 

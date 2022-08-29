@@ -1,4 +1,4 @@
-import { BelongsToMany, Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, HasMany, HasOne, Model, Table } from "sequelize-typescript";
 import { Order } from "src/orders/orders.model";
 import { UserOrder } from "src/orders/user-orders.model";
 import { Role } from "src/roles/roles.model";
@@ -24,7 +24,10 @@ export class User extends Model<User, UserCreationAttr> {
     @BelongsToMany(() => Role, () => UserRoles)
     role: Role[]
 
-    @BelongsToMany(() => Order, () => UserOrder)
-    orders: Order[];
+    // @BelongsToMany(() => Order, () => UserOrder)
+    // orders: Order[];
+
+    @HasMany(() => Order)
+    orders: Order[]
 
 }
