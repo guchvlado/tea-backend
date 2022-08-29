@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './libs/normalize';
+@import './fonts';
+@import './mixins';
+@import './variables';
+
+@layer components {
+    .mycontainer {
+        @apply w-11/12 mx-auto;
+    }
+    .button {
+        display: inline-block;
+        background-color: $green;
+        border-radius: 30px;
+        padding: 10px 20px;
+        min-width: 100px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
+        border: 1px solid transparent;
+        @include noselect();
+        &,
+        span {
+          color: #fff;
+        }
+      
+        i,
+        span,
+        path,
+        svg {
+          transition: all $duration ease-in-out;
+        }
+      
+        &:hover {
+          background-color: darken($green, 8%);
+        }
+      
+        &:active {
+          background-color: darken($green, 12%);
+          transform: translateY(1px);
+        }
+    }
+    .delimiter {
+        @apply bg-white opacity-50 h-6 w-[1px] mx-3;
+    }
+    .button_item {
+      @apply flex justify-between items-center border border-maingreen rounded-lg px-6 py-3 mt-2 cursor-pointer hover:bg-maingreen hover:text-white active:bg-green-700 active:translate-y-1 ;
+    }
+    .button_cartItem {
+      @apply border-2 border-maingreen p-3 rounded-full hover:bg-maingreen child:child:hover:fill-white cursor-pointer duration-300;
+    }
+}
