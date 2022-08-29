@@ -13,8 +13,8 @@ const CartButton = () => {
     return (
             <Link href='/cart'>
                 <a className="flex items-center justify-center button py-4 leading-6">
-                    <span>{totalPrice} ₽</span>
-                    <div className="delimiter"></div>
+                    <span className="hidden sm:block">{totalPrice} ₽</span>
+                    <div className="delimiter hidden sm:block"></div>
                     <svg
                         width="18"
                         height="18"

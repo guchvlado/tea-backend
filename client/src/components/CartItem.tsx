@@ -5,7 +5,7 @@ import { addCartItem, decreaseItemQuantity, deleteCartItem } from '../redux/redu
 import { ICartItem } from '../types/ITeaItem';
 
 const CartItem: React.FC<ICartItem> = (props) => {
-    const {imageUrl, title, price, quantity, id, category, rating} = props
+    const {image, title, price, quantity, id} = props
     const dispatch = useAppDispatch()
 
     const [weight, setWeight] = useState(100)
@@ -26,13 +26,13 @@ const CartItem: React.FC<ICartItem> = (props) => {
         <div className="w-full border-t pt-6 flex items-center justify-between">
             <div className='hidden md:block w-[10%]'>
                 <Image
-                    src={imageUrl}
+                    src={`${process.env.NEXT_PUBLIC_API_HOST}/${image}`}
                     alt="Pizza"
                     width={80}
                     height={80}
                 />
             </div>
-            <div className="flex flex-col justify-center w-[40%]">
+            <div className="flex flex-col justify-center w-[40%] ml-2">
                 <h3 className='font-bold text-2xl leading-7'>{title}</h3>
                 <span className='text-lg text-gray-500'>{quantity} г.</span>
             </div>

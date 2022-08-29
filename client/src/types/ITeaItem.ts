@@ -1,8 +1,8 @@
 export interface ITeaItem {
     id: string;
-    imageUrl: string;
+    image: string;
     title: string;
-    category: number;
+    categoryId: number;
     price: number;
     rating: number;
 }

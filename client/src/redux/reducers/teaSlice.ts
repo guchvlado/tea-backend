@@ -3,11 +3,13 @@ import { ITeaItem } from "../../types/ITeaItem";
 import {fetchTea} from './fetchTea'
 
 interface TeaSliceState {
+    count: number;
     items: ITeaItem[];
     status: 'loading' | 'success' | 'error';
 }
 
 const initialState: TeaSliceState = {
+    count: 0,
     items: [],
     status: 'loading'
 }
@@ -24,7 +26,8 @@ export const teaSlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(fetchTea.fulfilled, (state, action) => {
-                state.items = action.payload
+                state.items = action.payload.rows
+                state.count = action.payload.count
                 state.status = 'success'
             })
             .addCase(fetchTea.rejected, state => {

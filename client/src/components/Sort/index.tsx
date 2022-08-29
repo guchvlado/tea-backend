@@ -5,11 +5,11 @@ import { setActiveSort } from "../../redux/reducers/filterSlice"
 import { ISortItem } from "../../types/ISortItem"
 
 const sortList: ISortItem[] = [
-    {name: 'Сначала популярный', sortBy: 'rating', order: 'desc'},
-    {name: 'Сначала дорогой', sortBy: 'price', order: 'desc'},
-    {name: 'Сначала недорогой', sortBy: 'price', order: 'inc'},
-    {name: 'По наименованию a-z', sortBy: 'title', order: 'desc'},
-    {name: 'По наименованию z-a', sortBy: 'title', order: 'inc'}
+    {name: 'Сначала популярный', sortBy: 'rating', order: 'DESC'},
+    {name: 'Сначала дорогой', sortBy: 'price', order: 'DESC'},
+    {name: 'Сначала недорогой', sortBy: 'price', order: 'ASC'},
+    {name: 'По наименованию a-z', sortBy: 'title', order: 'DESC'},
+    {name: 'По наименованию z-a', sortBy: 'title', order: 'ASC'}
 ]
 
 const Sort = React.memo(() => {

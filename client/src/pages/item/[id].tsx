@@ -32,7 +32,7 @@ const TeaPage = ({ item }: TeaPageProps) => {
     return (
         <div className='mycontainer py-24 flex flex-col md:flex-row gap-5'>
                 <Image
-                    src={item.imageUrl}
+                    src={`${process.env.NEXT_PUBLIC_API_HOST}/${item.image}`}
                     alt={item.title}
                     width={600}
                     height={400}
@@ -76,9 +76,8 @@ const TeaPage = ({ item }: TeaPageProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}`)
-    // const data = await response.json() as ITeaItem[]
-    const data = teaData
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/tea/all`)
+    const data = await response.json() as ITeaItem[]
     const paths = data.map(({ id }) => ({
         params: { id: id.toString() }
     }))
@@ -92,10 +91,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
 
     const { id } = context.params!
-    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}` + id)
-    // const data = await response.json()
 
-    const data = teaData.find(item => item.id === id)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/tea/` + id)
+    const data = await response.json()
+
+    //const data = teaData.find(item => item.id === id)
 
     if (!data) {
         return {

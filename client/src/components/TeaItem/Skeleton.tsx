@@ -5,9 +5,9 @@ export default function Skeleton() {
     return (
         <ContentLoader
             speed={2}
-            width={300}
-            height={300}
-            viewBox="0 0 300 300"
+            width={320}
+            height={345}
+            viewBox="0 0 320 345"
             backgroundColor="#d2d0d0"
             foregroundColor="#ecebeb"
             uniqueKey="skeleton"

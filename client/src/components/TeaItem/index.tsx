@@ -6,7 +6,7 @@ import { useAppSelector } from "../../hooks/useAppSelector"
 import { addCartItem } from "../../redux/reducers/cartSlice"
 import { ITeaItem } from "../../types/ITeaItem"
 
-const TeaItem = ({ id, imageUrl, price, title, category, rating }: ITeaItem) => {
+const TeaItem = ({ id, image, price, title, categoryId, rating }: ITeaItem) => {
 
     const dispatch = useAppDispatch()
 
@@ -18,8 +18,8 @@ const TeaItem = ({ id, imageUrl, price, title, category, rating }: ITeaItem) => 
         dispatch(addCartItem({
             id,
             title,
-            category,
-            imageUrl,
+            categoryId,
+            image,
             price,
             rating,
             quantity: weight,
@@ -31,7 +31,7 @@ const TeaItem = ({ id, imageUrl, price, title, category, rating }: ITeaItem) => 
             <Link href={`/item/${id}`}>
                 <a>
                     <Image
-                        src={imageUrl}
+                        src={`${process.env.NEXT_PUBLIC_API_HOST}/${image}`}
                         alt="tea"
                         height={190}
                         width={260}
