@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 
@@ -7,6 +8,7 @@ export class AuthController {
 
     constructor(private authService: AuthService) {}
 
+    @UsePipes(ValidationPipe)
     @Post('/register')
     register(@Body() dto: CreateUserDto) {
         return this.authService.register(dto)
