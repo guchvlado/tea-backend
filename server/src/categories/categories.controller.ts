@@ -29,4 +29,11 @@ export class CategoriesController {
         return this.categoriesService.getCategoryById(+id)
     }
 
+    @ApiOperation({summary: 'Получение всех категорий'})
+    @ApiResponse({status: 200, type: [Categories]})
+    @Get()
+    getAll() {
+        return this.categoriesService.getAll()
+    }
+
 }
