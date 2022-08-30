@@ -52,6 +52,13 @@ export class TeaItemsController {
     @ApiResponse({status: 200, type: [Tea]})
     @Get()
     getAllWithPages(@Query() query) {
-        return this.teaService.getAllWithPages(query.limit, query.page, query.categoryId)
+        return this.teaService.getAllWithPages(query.limit, query.page, query.categoryId, query.order, query.sortBy, query.search)
+    }
+
+    @ApiOperation({summary: 'Получение товара по id'})
+    @ApiResponse({status: 200, type: Tea})
+    @Get('/:id')
+    getById(@Param('id') id: string) {
+        return this.teaService.getByPk(+id)
     }
 }

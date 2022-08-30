@@ -43,17 +43,21 @@ export class TeaItemsService {
         return teaItems;
     }
 
-    async getAllWithPages(limit: number = 4, page: number = 1, categoryId?: number) {
+    async getAllWithPages(limit: number = 4, page: number = 1, categoryId?: number, order: string = 'asc', sortBy: string = 'id', search?: string) {
         const offset = page * limit - limit
 
         let teaItems: any = []
         if (categoryId) {
-            teaItems = await this.teaRepository.findAndCountAll({where: {categoryId}, limit, offset})
+            teaItems = await this.teaRepository.findAndCountAll({where: {categoryId}, limit, offset, order: [[sortBy, order]]})
         }
         else {
-            teaItems = await this.teaRepository.findAndCountAll({limit, offset})
+            teaItems = await this.teaRepository.findAndCountAll({limit, offset, order: [[sortBy, order]]})
         }
 
+        if (search) {
+            const newRows = teaItems.rows.filter(item => item.title.includes(search))
+            teaItems = {count: newRows.length, rows: newRows}
+        }
 
         return teaItems
     }
