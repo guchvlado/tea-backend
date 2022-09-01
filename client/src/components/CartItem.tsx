@@ -27,7 +27,7 @@ const CartItem: React.FC<ICartItem> = (props) => {
             <div className='hidden md:block w-[10%]'>
                 <Image
                     src={`${process.env.NEXT_PUBLIC_API_HOST}/${image}`}
-                    alt="Pizza"
+                    alt="Tea"
                     width={80}
                     height={80}
                 />

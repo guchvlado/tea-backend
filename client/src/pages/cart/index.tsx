@@ -1,15 +1,24 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import CartEmpty from '../../components/CartEmpty'
 import CartItem from '../../components/CartItem'
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { useAppSelector } from '../../hooks/useAppSelector'
-import { clearCart } from '../../redux/reducers/cartSlice'
+import $api from '../../http'
+import { clearCart, setCartItems } from '../../redux/reducers/cartSlice'
 import { countCartOrder } from '../../utils/countCartOrder'
 
+interface IPostTea {
+  teaId: number;
+  teaQuantity: number;
+}
+
 const Cart: NextPage = () => {
+
+  const router = useRouter()
 
   const dispatch = useAppDispatch()
 
@@ -17,10 +26,26 @@ const Cart: NextPage = () => {
 
   const {totalPrice, totalWeight} = countCartOrder(items)
 
-  const onClearCart = () => {
+  const handleClearCart = () => {
     if (window.confirm('Вы уверены, что хотите очистить корзину?')) {
       dispatch(clearCart())
     }
+  }
+
+  const handleSubmit = () => {
+    const postTeaItems: IPostTea[] = items.map(item => ({teaId: +item.id, teaQuantity: item.quantity}))
+    const data = {
+      items: postTeaItems
+    }
+    $api.post('/orders', data)
+      .then(() => {
+        dispatch(setCartItems([]))
+        window.alert('Заказ успешно создан')
+        router.push('/profile')
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 
   
@@ -58,7 +83,7 @@ const Cart: NextPage = () => {
                 strokeLinejoin="round"></path>
             </svg>
             Корзина</h2>
-          <div onClick={onClearCart} className="flex items-center ml-8 text-xs md:ml-0 md:text-lg cursor-pointer child:text-gray-300 child:duration-300 child:hover:text-gray-900 group">
+          <div onClick={handleClearCart} className="flex items-center ml-8 text-xs md:ml-0 md:text-lg cursor-pointer child:text-gray-300 child:duration-300 child:hover:text-gray-900 group">
             <svg
               width="20"
               height="20"
@@ -122,8 +147,8 @@ const Cart: NextPage = () => {
                 <span>Вернуться назад</span>
               </a>
             </Link>
-            <div className="button pay-btn">
-              <span>Оплатить сейчас</span>
+            <div className="button pay-btn" onClick={handleSubmit}>
+              <span>Создать заказ</span>
             </div>
           </div>
         </div>

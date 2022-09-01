@@ -1,7 +1,10 @@
+import axios from 'axios'
 import {ReactNode, useEffect} from 'react'
 import Header from '../components/Header'
+import LogOutButton from '../components/LogOutButton'
 import { useAppDispatch } from '../hooks/useAppDispatch'
 import { setCartItems } from '../redux/reducers/cartSlice'
+import { setIsAuth, setUser } from '../redux/reducers/userSlice'
 import { getCartFromLS } from '../utils/getCartFromLS'
 
 interface MainLayOutProps {
@@ -14,6 +17,18 @@ const MainLayOut = ({children}: MainLayOutProps) => {
 
     useEffect(() => {
       dispatch(setCartItems(getCartFromLS()))
+
+      const token = localStorage.getItem('token')
+      if (token) {
+        axios.get('http://localhost:7000/auth/validate/' + token)
+          .then(res => res.data)
+          .then(data => {
+            dispatch(setIsAuth(true))
+            dispatch(setUser(data))
+          })
+          .catch(e => console.log(e))
+  
+      }
     }, [])
 
     return (

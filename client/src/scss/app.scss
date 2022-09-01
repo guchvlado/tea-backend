@@ -52,4 +52,13 @@
     .button_cartItem {
       @apply border-2 border-maingreen p-3 rounded-full hover:bg-maingreen child:child:hover:fill-white cursor-pointer duration-300;
     }
+    .input {
+      @apply rounded-xl border border-lime-800 w-full h-12 px-4 text-lg ;
+    }
+    .input-label {
+      @apply text-2xl font-bold ; 
+    }
+    .input-error {
+      @apply text-red-500 ; 
+    }
 }

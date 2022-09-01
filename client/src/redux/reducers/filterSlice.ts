@@ -10,7 +10,7 @@ interface FilterSliceState {
 const initialState: FilterSliceState = {
     activeCategory: 0,
     activeSearch: '',
-    activeSort: {name: 'Сначала популярный', sortBy: 'rating', order: 'desc'},
+    activeSort: {name: 'Сначала популярный', sortBy: 'rating', order: 'DESC'},
 }
 
 export const filterSlice = createSlice({

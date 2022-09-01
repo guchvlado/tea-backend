@@ -18,20 +18,43 @@ export class AuthService {
         }
         const hashPassword = await bcrypt.hash(dto.password, 5)
         const user = await this.usersService.createUser({...dto, password: hashPassword})
-        return await this.generateToken(user)
+        const token = await this.generateToken(user)
+        return {
+            user: {
+                email: user.email,
+                id: user.id,
+                role: user.role
+            },
+            token
+        }
     }
 
 
     async login(dto: CreateUserDto) {
         const user = await this.validateUser(dto)
-        return await this.generateToken(user)
+        const token = await this.generateToken(user)
+        return {
+            user: {
+                email: user.email,
+                id: user.id,
+                role: user.role
+            },
+            token
+        }
+    }
+
+    async validateToken(token: string) {
+        try {
+            const payload = await this.jwtService.verify(token)
+            return payload
+        } catch(e) {
+            throw new UnauthorizedException()
+        }
     }
 
     async generateToken(user: User) {
-        const payload = {email: user.email, id: user.id, roles: user.role}
-        return {
-            token: this.jwtService.sign(payload)
-        }
+        const payload = {email: user.email, id: user.id, role: user.role}
+        return this.jwtService.sign(payload)
     }
 
     async validateUser(dto: CreateUserDto) {
