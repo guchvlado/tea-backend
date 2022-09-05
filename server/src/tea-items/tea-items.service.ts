@@ -21,9 +21,14 @@ export class TeaItemsService {
         if (!teaItem) {
             throw new HttpException('Такого чая не существует в базе данных', HttpStatus.BAD_REQUEST)
         }
-        await this.filesService.deleteFile(teaItem.image)
-        const fileName = await this.filesService.createFile(image);
-        teaItem.set({...dto, image: fileName})
+        if (image) {
+            await this.filesService.deleteFile(teaItem.image)
+            const fileName = await this.filesService.createFile(image);
+            teaItem.set({...dto, image: fileName})
+        } else {
+            teaItem.set({...teaItem, ...dto})
+        }
+
         await teaItem.save()
         return teaItem
     }

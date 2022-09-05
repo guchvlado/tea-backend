@@ -11,7 +11,7 @@ const Header = () => {
 
     const router = useRouter()
 
-    const isAuth = useAppSelector(state => state.user.isAuth)
+    const {user, isAuth} = useAppSelector(state => state.user)
 
     return (
         <header className="border-b">
@@ -36,6 +36,7 @@ const Header = () => {
                 {router.pathname === '/' && <Search />}
 
                 <div className="flex gap-2 items-center">
+
                     <Link href={isAuth ? '/profile' : '/auth'}>
                         <a className="button p-0 min-w-0 w-14 h-14 flex justify-center items-center">
                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +44,14 @@ const Header = () => {
                             </svg>
                         </a>
                     </Link>
+
+                    {user.role.some(role => role.name === 'ADMIN') ? 
+                        <Link href='/admin'>
+                            <a className="button py-4 leading-6">ADMIN PANEL</a>
+                        </Link>
+                        : null
+                    }
+
                     <CartButton />
                 </div>
             </div>

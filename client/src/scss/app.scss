@@ -61,4 +61,19 @@
     .input-error {
       @apply text-red-500 ; 
     }
+    .button-admin {
+      @apply border py-2 rounded-lg bg-transparent cursor-pointer hover:text-white transition px-5;
+    }
+    .yellow {
+      @apply text-yellow-500 border-yellow-500 hover:bg-yellow-500;
+    }
+    .green {
+      @apply text-green-500 border-green-500 hover:bg-green-500;
+    }
+    .red {
+      @apply text-red-500 border-red-500 hover:bg-red-500;
+    }
+    .indigo {
+      @apply text-indigo-500 border-indigo-500 hover:bg-indigo-500;
+    }
 }

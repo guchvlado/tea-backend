@@ -31,10 +31,29 @@ export class OrdersController {
     }
 
     @ApiOperation({summary: 'Получение всех заказов для текущего пользователя (AUTH)'})
-    @ApiResponse({status: 200, type: Order})
+    @ApiResponse({status: 200, type: [Order]})
     @UseGuards(JwtAuthGuard)
     @Get()
     getOrdersByCurrentUser(@Request() req) { //@Headers('authorization') auth: string
         return this.ordersService.getOrdersByCurrentUser(req.user.id)
     }
+
+    @ApiOperation({summary: 'Получение всех заказов (ADMIN)'})
+    @ApiResponse({status: 200, type: [Order]})
+    @Roles("ADMIN")
+    @UseGuards(RolesGuard)
+    @Get('/all')
+    getAll() {
+        return this.ordersService.getAllOrders()
+    }
+
+    @ApiOperation({summary: 'Получение заказа по id (ADMIN)'})
+    @ApiResponse({status: 200, type: Order})
+    @Roles("ADMIN")
+    @UseGuards(RolesGuard)
+    @Get('/:id')
+    getById(@Param('id') id: string) {
+        return this.ordersService.getOrderById(+id)
+    }
+
 }

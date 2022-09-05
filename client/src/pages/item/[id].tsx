@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import BackButton from '../../components/UI/BackButton';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addCartItem } from '../../redux/reducers/cartSlice';
@@ -67,9 +68,7 @@ const TeaPage = ({ item }: TeaPageProps) => {
 
                 </div>
 
-                <Link href='/'>
-                    <a className='flex justify-center items-center gap-4 w-64 py-3 border rounded-full duration-300 hover:bg-maingreen hover:text-white'>Вернуться назад</a>
-                </Link>
+                <BackButton/>
             </div>
         </div>
     );

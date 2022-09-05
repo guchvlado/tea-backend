@@ -13,7 +13,7 @@ export class Order extends Model<Order> {
     id: number;
 
     @ApiProperty({example: 'done', description: 'Статус'})
-    @Column({type: DataType.STRING, defaultValue: 'toDo'})
+    @Column({type: DataType.STRING, defaultValue: 'Оформлен'})
     status: string;
 
     @ApiProperty({example: '1', description: 'userID'})

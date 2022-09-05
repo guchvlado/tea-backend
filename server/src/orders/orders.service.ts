@@ -58,9 +58,21 @@ export class OrdersService {
     }
 
     async getOrdersByCurrentUser(userId: string) {
-        //const orders = await this.userOrderRepository.findAll({include: {all: true}, where: {userId}})
         const orders = await this.orderRepository.findAll({include: {all: true}, where: {userId}})
         return orders
+    }
+
+    async getAllOrders() {
+        const orders = await this.orderRepository.findAll({include: {all: true}})
+        return orders
+    }
+
+    async getOrderById(id: number) {
+        const order = await this.orderRepository.findByPk(id, {include: {all: true}})
+        if (!order) {
+            throw new HttpException('Заказ не удалось найти', HttpStatus.BAD_REQUEST)
+        }
+        return order
     }
 
 }

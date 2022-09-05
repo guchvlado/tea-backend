@@ -20,6 +20,8 @@ export class TeaItemsController {
     @Post('/new')
     @UseInterceptors(FileInterceptor('image'))
     create(@Body() dto: CreateTeaDto, @UploadedFile() image) {
+        console.log('dto - ', dto)
+        console.log('image - ', image)
         return this.teaService.create(dto, image)
     }
 
