@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Categories from '../components/Categories'
+import Pagination from '../components/Pagination'
 import Sort from '../components/Sort'
 import TeaItem from '../components/TeaItem'
 import Skeleton from '../components/TeaItem/Skeleton'
@@ -14,11 +15,13 @@ interface HomePageProps {
   categories: ICategory[]
 }
 
-const Home: NextPage<HomePageProps> = ({categories}) => {
+const Home: NextPage<HomePageProps> = ({ categories }) => {
 
   const dispatch = useAppDispatch()
-  const {items, count, status} = useAppSelector(state => state.tea)
-  const {activeCategory, activeSearch, activeSort: {order, sortBy}} = useAppSelector(state => state.filter)
+  const { items, status } = useAppSelector(state => state.tea)
+  const { currentPage, activeCategory, activeSearch, activeSort: { order, sortBy } } = useAppSelector(state => state.filter)
+
+  
 
   useEffect(() => {
     dispatch(fetchTea({
@@ -26,14 +29,15 @@ const Home: NextPage<HomePageProps> = ({categories}) => {
       search: activeSearch,
       order,
       sortBy,
+      page: currentPage
     }))
-  }, [activeCategory, activeSearch, order, sortBy])
+  }, [activeCategory, activeSearch, order, sortBy, currentPage])
 
   const teaItems = items.map(item => <TeaItem key={item.id} {...item} />)
   const skeletons = [...new Array(3)].map((_, index) => <Skeleton key={index} />)
 
   return (
-    <div className='mycontainer py-[43px] min-h-[700px]'>
+    <div className='mycontainer py-[43px] min-h-[850px]'>
       <div className='flex gap-4 md:gap-[100px] flex-col md:flex-row'>
         <Categories categories={categories} />
 
@@ -48,6 +52,7 @@ const Home: NextPage<HomePageProps> = ({categories}) => {
             {status === 'loading' && skeletons}
             {status === 'success' && teaItems}
           </div>
+          <Pagination/>
         </div>
       </div>
     </div>
@@ -55,10 +60,10 @@ const Home: NextPage<HomePageProps> = ({categories}) => {
 }
 
 // export const getServerSideProps = async () => {
-  
+
 //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/tea`)
 //   const data = await response.json()
-  
+
 //   if (!data) {
 //     return {
 //       notFound: true
@@ -78,15 +83,15 @@ export const getStaticProps = async () => {
   const data = await response.json()
 
   if (!data) {
-      return {
-          notFound: true
-      }
+    return {
+      notFound: true
+    }
   }
 
   return {
-      props: {
-          categories: data
-      }
+    props: {
+      categories: data
+    }
   }
 }
 

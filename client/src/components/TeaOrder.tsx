@@ -26,7 +26,7 @@ const TeaOrder: React.FC<IOrder> = (order) => {
                 </div>
                 <div>
                     Сумма заказа <br />
-                    {tea.reduce((sum, item) => sum + (item.price * item.TeaOrder.teaQuantity / 100), 0)}
+                    {tea.reduce((sum, item) => sum + (item.price * item.TeaOrder.teaQuantity / 100), 0)} руб.
                 </div>
             </div>
             <div 

@@ -38,6 +38,7 @@ export class OrdersController {
         return this.ordersService.getOrdersByCurrentUser(req.user.id)
     }
 
+
     @ApiOperation({summary: 'Получение всех заказов (ADMIN)'})
     @ApiResponse({status: 200, type: [Order]})
     @Roles("ADMIN")
@@ -55,5 +56,4 @@ export class OrdersController {
     getById(@Param('id') id: string) {
         return this.ordersService.getOrderById(+id)
     }
-
 }
