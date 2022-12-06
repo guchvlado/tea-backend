@@ -20,13 +20,17 @@ export class RolesGuard implements CanActivate {
             if (!requiredRoles) {
                 return true
             }
-            const auth = req.headers.authorization
-            const [authType, token] = auth.split(' ')
+            const accessToken = req.cookies?.accessToken
+            // const auth = req.headers.authorization
+            // const [authType, token] = auth.split(' ')
             
-            if (!token || authType !== 'Bearer') {
+            // if (!token || authType !== 'Bearer') {
+            //     throw new UnauthorizedException({message: "Вы не авторизованы"})
+            // }
+            if (!accessToken) {
                 throw new UnauthorizedException({message: "Вы не авторизованы"})
             }
-            const user = this.jwtService.verify(token)
+            const user = this.jwtService.verify(accessToken)
             req.user = user
             return user.role.some(role => requiredRoles.includes(role.name))
         } catch(e) {
