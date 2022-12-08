@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../hooks/useAppDispatch"
-import { useAppSelector } from "../hooks/useAppSelector"
-import { changeCurrentPage, decreaseCurrentPage, increaseCurrentPage } from "../redux/reducers/filterSlice"
+import { useAppDispatch } from "hooks/useAppDispatch"
+import { useAppSelector } from "hooks/useAppSelector"
+import { changeCurrentPage, decreaseCurrentPage, increaseCurrentPage } from "redux/reducers/filterSlice"
 
 const Pagination: React.FC = () => {
 
