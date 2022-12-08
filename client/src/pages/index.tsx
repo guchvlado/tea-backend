@@ -49,7 +49,7 @@ const Home: NextPage<HomePageProps> = ({ categories }) => {
 
           <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-4'>
             {status === 'error' && <h2>Error</h2>}
-            {status === 'loading' && skeletons}
+            {/* {status === 'loading' && skeletons} */}
             {status === 'success' && teaItems}
           </div>
           <Pagination/>
