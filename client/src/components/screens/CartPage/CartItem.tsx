@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { useAppDispatch } from '../hooks/useAppDispatch';
-import { addCartItem, decreaseItemQuantity, deleteCartItem } from '../redux/reducers/cartSlice';
-import { ICartItem } from '../types/ITeaItem';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { addCartItem, decreaseItemQuantity, deleteCartItem } from 'redux/reducers/cartSlice';
+import { ICartItem } from 'types/ITeaItem';
 
 const CartItem: React.FC<ICartItem> = (props) => {
     const {image, title, price, quantity, id} = props

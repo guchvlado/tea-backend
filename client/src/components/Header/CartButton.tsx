@@ -1,7 +1,6 @@
 import Link from "next/link"
-import { useEffect, useRef } from "react"
-import { useAppSelector } from "../../hooks/useAppSelector"
-import { countCartOrder } from "../../utils/countCartOrder"
+import { useAppSelector } from "hooks/useAppSelector"
+import { countCartOrder } from "utils/countCartOrder"
 
 
 const CartButton = () => {
