@@ -12,7 +12,7 @@ const LogOutButton: React.FC = () => {
     const dispatch = useAppDispatch()
 
     const onClickHanlder = () => {
-        localStorage.setItem('token', '')
+        $api.get('/auth/logout')
         dispatch(setIsAuth(false))
         dispatch(clearUser())
         router.push('/auth')
