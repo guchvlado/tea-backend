@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { IOrder } from "../types/IOrder"
+import { IOrder } from "types/IOrder"
 
 
 const TeaOrder: React.FC<IOrder> = (order) => {
