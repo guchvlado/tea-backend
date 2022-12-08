@@ -20,6 +20,7 @@ const CartPage = () => {
     const dispatch = useAppDispatch()
   
     const items = useAppSelector(state => state.cart.items)
+    const isAuth = useAppSelector(state => state.user.isAuth)
   
     const {totalPrice, totalWeight} = countCartOrder(items)
   
@@ -30,6 +31,10 @@ const CartPage = () => {
     }
   
     const handleSubmit = () => {
+      if (!isAuth) {
+        alert('Для создания заказа необходимо зарегестрироваться')
+        return
+      }
       const postTeaItems: IPostTea[] = items.map(item => ({teaId: +item.id, teaQuantity: item.quantity}))
       const data = {
         items: postTeaItems
