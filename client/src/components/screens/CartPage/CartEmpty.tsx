@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import emptyCartImage from '../assets/img/empty-cart.png'
+import emptyCartImage from 'assets/img/empty-cart.png'
 
 const CartEmpty = () => {
     return (

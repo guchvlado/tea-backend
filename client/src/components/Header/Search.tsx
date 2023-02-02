@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useDebounce } from "../../hooks/useDebounce";
-import { setActiveSearch } from "../../redux/reducers/filterSlice";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useDebounce } from "hooks/useDebounce";
+import { setActiveSearch } from "redux/reducers/filterSlice";
 
 const Search = () => {
 

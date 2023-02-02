@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { useAppDispatch } from "../../hooks/useAppDispatch"
-import { useAppSelector } from "../../hooks/useAppSelector"
-import { addCartItem } from "../../redux/reducers/cartSlice"
-import { ITeaItem } from "../../types/ITeaItem"
+import { useAppDispatch } from "hooks/useAppDispatch"
+import { useAppSelector } from "hooks/useAppSelector"
+import { addCartItem } from "redux/reducers/cartSlice"
+import { ITeaItem } from "types/ITeaItem"
 
 const TeaItem = ({ id, image, price, title, categoryId, rating }: ITeaItem) => {
 

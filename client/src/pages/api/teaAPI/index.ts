@@ -19,7 +19,7 @@ export default function handler(
         filteredData = filteredData.filter(item => item.title.match(new RegExp(search, 'i')))
     }
     if (category && typeof +category === 'number') {
-        filteredData = filteredData.filter(item => item.category === +category)
+        filteredData = filteredData.filter(item => item.categoryId === +category)
     }
     if (sortBy) {
         switch(sortBy) {

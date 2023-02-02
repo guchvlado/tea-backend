@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { useAppDispatch } from "../hooks/useAppDispatch"
-import { useAppSelector } from "../hooks/useAppSelector"
-import { setActiveCategory } from "../redux/reducers/filterSlice"
-import { ICategory } from "../types/ICategory"
-
-//const categories = ['Все', 'Красный', 'Зеленый', 'Улун', 'Пуэр', 'Травяной']
+import { useAppDispatch } from "hooks/useAppDispatch"
+import { useAppSelector } from "hooks/useAppSelector"
+import { setActiveCategory } from "redux/reducers/filterSlice"
+import { ICategory } from "types/ICategory"
 
 interface CategoriesProps {
     categories: ICategory[];

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useAppDispatch } from "../../hooks/useAppDispatch"
-import { useAppSelector } from "../../hooks/useAppSelector"
-import { setActiveSort } from "../../redux/reducers/filterSlice"
-import { ISortItem } from "../../types/ISortItem"
+import { useAppDispatch } from "hooks/useAppDispatch"
+import { useAppSelector } from "hooks/useAppSelector"
+import { setActiveSort } from "redux/reducers/filterSlice"
+import { ISortItem } from "types/ISortItem"
 
 const sortList: ISortItem[] = [
     {name: 'Сначала популярный', sortBy: 'rating', order: 'DESC'},

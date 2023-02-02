@@ -4,8 +4,8 @@ import { useRouter } from "next/router"
 
 import Logo from '../../assets/img/logo.svg'
 import { useAppSelector } from "../../hooks/useAppSelector"
-import CartButton from "../CartButton"
-import Search from "../Search"
+import CartButton from "./CartButton"
+import Search from "./Search"
 
 const Header = () => {
 

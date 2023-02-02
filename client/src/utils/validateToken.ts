@@ -1,8 +1,9 @@
 import axios from "axios"
+import $api from "../http"
 
-const validateToken = async (token: string) => {
+const validateToken = async () => {
     try {
-        await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/auth/validate/${token}`)
+        await $api.get(`/auth/validate/`)
         return true
     } catch(e) {
         return false

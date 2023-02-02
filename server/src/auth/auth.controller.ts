@@ -37,8 +37,9 @@ export class AuthController {
         return {message: 'cookie cleared'}
     }
 
-    @Get('/validate/:token')
-    validateToken(@Param('token') token: string) {
+    @Get('/validate')
+    validateToken(@Req() req: Request) {
+        const token: string = req.cookies?.accessToken ?? ''
         return this.authService.validateToken(token)
     }
 

@@ -59,7 +59,7 @@ export class TeaItemsService {
         }
 
         if (search) {
-            const newRows = teaItems.rows.filter(item => item.title.includes(search))
+            const newRows = teaItems.rows.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))
             teaItems = {count: newRows.length, rows: newRows}
         }
 

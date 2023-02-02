@@ -4,8 +4,8 @@ import { teaData } from "../data/teaData"
 
 const defaultTeaItem: ITeaItem = {
     id: '0',
-    category: 1,
-    imageUrl: '',
+    categoryId: 1,
+    image: '',
     price: 0,
     rating: 0,
     title: 'default template'
