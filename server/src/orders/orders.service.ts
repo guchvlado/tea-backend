@@ -18,7 +18,7 @@ export class OrdersService {
                 private teaItemsService: TeaItemsService) {}
 
     async createOrder(userId, dto: CreateOrderDto) {
-        const order = await this.orderRepository.create()
+        const order = await this.orderRepository.create(dto)
         const user = await this.usersService.getUserByPk(userId)
 
         if (!user || !order) {
@@ -33,6 +33,8 @@ export class OrdersService {
 
         await order.$set('tea', [])
         order.tea = []
+
+        console.log(dto)
 
         dto.items.forEach(async (item) => {
             const teaItem = await this.teaItemsService.getByPk(item.teaId)

@@ -6,6 +6,9 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import Head from "next/head";
 import { useAppSelector } from "hooks/useAppSelector";
 import { countCartOrder } from "utils/countCartOrder";
+import $api from "http";
+import { setCartItems } from "redux/reducers/cartSlice";
+import { useRouter } from "next/router";
 
 
 interface IFormInputs {
@@ -22,7 +25,16 @@ const schema = yup.object({
     time: yup.string().required('Поле обязательно для заполнения')
 }).required();
 
+interface IPostTea {
+    teaId: number;
+    teaQuantity: number;
+  }
+
 const PaymentPage = () => {
+
+    const router = useRouter()
+
+    const dispatch = useAppDispatch()
 
     const items = useAppSelector(state => state.cart.items)
     const isAuth = useAppSelector(state => state.user.isAuth)
@@ -41,7 +53,13 @@ const PaymentPage = () => {
                 alert('Для создания заказа необходимо зарегестрироваться')
                 return
             }
-            console.log({...data, items})
+            
+            const postTeaItems: IPostTea[] = items.map(item => ({teaId: +item.id, teaQuantity: item.quantity}))
+
+            await $api.post('/orders', {...data, items: postTeaItems})
+            dispatch(setCartItems([]))
+            window.alert('Заказ успешно создан')
+            router.push('/profile')
         } catch(e: any) {
             setError(e?.response?.data?.message || '')
         }
