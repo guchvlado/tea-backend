@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import $api from "http";
+import $api from "../../../../http";
 import AdminPanelLayout from "layouts/AdminPanelLayout";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';

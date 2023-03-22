@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import React from "react"
 import { useAppDispatch } from "hooks/useAppDispatch"
-import $api from "http"
+import $api from "../../../http"
 import { clearUser, setIsAuth, setUser } from "redux/reducers/userSlice"
 
 

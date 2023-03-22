@@ -6,7 +6,7 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import Head from "next/head";
 import { useAppSelector } from "hooks/useAppSelector";
 import { countCartOrder } from "utils/countCartOrder";
-import $api from "http";
+import $api from "../../../http";
 import { setCartItems } from "redux/reducers/cartSlice";
 import { useRouter } from "next/router";
 

@@ -1,4 +1,4 @@
-import $api from 'http';
+import $api from '../../../../http';
 import AdminPanelLayout from 'layouts/AdminPanelLayout';
 import React, { useEffect, useState } from 'react';
 import { IUser } from 'types/IUser';

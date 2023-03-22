@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import $api from 'http';
+import $api from '../../../../http';
 import { IUser } from 'types/IUser';
 
 const UsersWidget = () => {

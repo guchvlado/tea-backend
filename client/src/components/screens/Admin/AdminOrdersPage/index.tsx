@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import $api from "http";
+import $api from "../../../../http";
 import AdminPanelLayout from "layouts/AdminPanelLayout";
 import { IOrder } from "types/IOrder";
 

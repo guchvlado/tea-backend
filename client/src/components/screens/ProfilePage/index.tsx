@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import $api from 'http';
+import $api from '../../../http';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector';
 

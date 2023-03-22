@@ -1,7 +1,7 @@
 // import $api from 'http';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import $api from 'http'
+import $api from '../../../../http'
 import { ITeaItem } from 'types/ITeaItem';
 import AdminPanelLayout from 'layouts/AdminPanelLayout';
 import ProductItem from '@components/admin/ProductItem';

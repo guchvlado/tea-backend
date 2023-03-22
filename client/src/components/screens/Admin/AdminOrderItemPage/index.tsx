@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BackButton from "components/UI/BackButton";
-import $api from "http";
+import $api from "../../../../http";
 import AdminPanelLayout from "layouts/AdminPanelLayout";
 import { IOrder } from "types/IOrder";
 

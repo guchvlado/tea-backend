@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import $api from "http";
+import $api from "../../../../http";
 import AdminPanelLayout from "layouts/AdminPanelLayout";
 import { ITeaItem } from "types/ITeaItem";
 import { useForm } from "react-hook-form";
