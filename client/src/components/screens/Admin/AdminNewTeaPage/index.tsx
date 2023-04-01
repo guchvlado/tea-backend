@@ -37,6 +37,9 @@ const AdminNewTeaPage = () => {
     formState: { errors },
   } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      categoryId: 1
+    }
   });
   const onSubmit = async (data: IFormInputs) => {
     try {
