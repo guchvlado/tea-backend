@@ -51,6 +51,7 @@ const PaymentPage = () => {
         try {
             if (!isAuth) {
                 alert('Для создания заказа необходимо зарегестрироваться')
+                router.push('/auth')
                 return
             }
             

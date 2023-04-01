@@ -29,6 +29,7 @@ const AdminTeaPage = () => {
             <div className="p-8">
                 <div className="flex justify-between">
                     <h2>Товары</h2>
+                    
                     <Link href={`/admin/tea/new`}>
                         <a className="button-admin green">Добавить новый товар</a>
                     </Link>

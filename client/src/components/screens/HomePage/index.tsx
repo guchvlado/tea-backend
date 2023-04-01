@@ -29,6 +29,8 @@ const HomePage: React.FC<HomePageProps> = ({categories}) => {
         page: currentPage
       }))
     }, [activeCategory, activeSearch, order, sortBy, currentPage])
+
+    // console.log(categories)
   
     const teaItems = items.map(item => <TeaItem key={item.id} {...item} />)
     const skeletons = [...new Array(3)].map((_, index) => <Skeleton key={index} />)

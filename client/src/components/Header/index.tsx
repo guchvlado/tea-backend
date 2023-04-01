@@ -14,7 +14,7 @@ const Header = () => {
     const {user, isAuth} = useAppSelector(state => state.user)
 
     return (
-        <header className="border-b">
+        <header className="border-b relative">
             <div className="mycontainer flex justify-between items-center py-10">
                 <Link href="/" >
                     <a>
@@ -26,8 +26,8 @@ const Header = () => {
                                 height={50}
                             />
                             <div>
-                                <div className="font-bold text-2xl uppercase">Tea Store</div>
-                                <div>Лучший чай в России</div>
+                                <div className="font-bold lg:text-2xl uppercase">Tea Store</div>
+                                <div className="text-sm lg:text-lg">Лучший чай в России</div>
                             </div>
                         </div>
                     </a>
@@ -47,7 +47,7 @@ const Header = () => {
 
                     {user.role.some(role => role.name === 'ADMIN') ? 
                         <Link href='/admin'>
-                            <a className="button py-4 leading-6">ADMIN PANEL</a>
+                            <a className="absolute top-2 right-2 text-maingreen underline hover:text-green-700 transition-colors">ADMIN PANEL</a>
                         </Link>
                         : null
                     }
