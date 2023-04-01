@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
@@ -34,6 +34,11 @@ export class CategoriesController {
     @Get()
     getAll() {
         return this.categoriesService.getAll()
+    }
+
+    @Delete('/delete/:id')
+    deleteCategoryById(@Param('id') id: string) {
+        return this.categoriesService.deleteCategoryById(+id)
     }
 
 }

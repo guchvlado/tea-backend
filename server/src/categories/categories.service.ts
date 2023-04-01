@@ -34,4 +34,13 @@ export class CategoriesService {
         return categories
     }
 
+    async deleteCategoryById(id: number) {
+        const category = await this.categoriesRepository.findOne({where: {id}})
+        if (!category) {
+            throw new HttpException('Такой категории нет в базе данных', HttpStatus.BAD_REQUEST)
+        }
+        await category.destroy()
+        return {message: `Category with id ${id} has been destroyed`}
+    }
+
 }
