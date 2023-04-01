@@ -99,7 +99,7 @@ const SideBar: React.FC = () => {
           <Link href="/admin/categories">
             <a
               className={`pl-6 py-2 mt-3 flex gap-3 transition-colors child:child:transition-colors child:child:hover:stroke-white hover:text-white hover:bg-maingreen ${
-                pathName.includes("/admin/orders")
+                pathName.includes("/admin/categories")
                   ? "bg-maingreen text-white"
                   : ""
               }`}
